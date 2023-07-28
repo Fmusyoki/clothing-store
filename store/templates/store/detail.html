@@ -1,0 +1,60 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block content %}
+<div class="flex-box" class="product_data">
+    <div class="left">
+        <div class="big-img">
+            <img src="{{ p.product_image.url }}">
+        </div>
+        {% for r in related %}
+        <div class="images">
+            <div class="small-img">
+                <img src="{{ r.product_image.url }}">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="right">
+        <div class="item-url">Home > Product > T-shirt</div>
+        <div class="pname" id="product_name">{{p.name}}</div>
+        <div class="ratting">
+            <i class='bx bx-star'></i>
+            <i class='bx bx-star'></i>
+            <i class='bx bx-star'></i>
+            <i class='bx bx-star'></i>
+            <i class='bx bx-star'></i>
+            <i class='bx bx-star-half'></i>
+        </div>
+        <div class="price">ksh {{p.Selling_price}}</div>
+        <div class="size">
+            <P>Size: </P>
+            <div class="psize active">M</div>
+            <div class="psize">L</div>
+            <div class="psize">XL</div>
+            <div class="psize">XXL</div>
+
+        </div>
+        {% csrf_token %}
+        <input type="hidden" value="{{ p.id }}" class="prod_id">
+        <div class="quantity">
+            <p>Quantity</p>
+            <input type="number" min="1" max="5" value="1" id="product-quantity">
+        </div>
+        <div class="btn-box">
+            <button type="button" class="cart-btn addToCartBtn" id="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn"  >Buy Now</button>
+
+        </div>
+    </div>
+</div>
+{% block js_block %}
+{% endblock %}
+
+{% comment %} <script>
+    let bidImg = document.querySelector('.big-img img');
+    function showImg(pic){
+        bigImg.src = pic;
+    }
+</script> {% endcomment %}
+
+{% endblock %}
